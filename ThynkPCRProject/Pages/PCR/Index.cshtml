@@ -1,4 +1,35 @@
 ﻿@page
 @model ThynkPCRProject.Pages.PCR.IndexModel
 @{
+    <br />
+    <h2>List of Bookings</h2>
+    <a class="btn btn-primary btn-sm" href="/PCR/Create">New Bookings</a>
+    <table class="table">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Venue ID</th>
+                <th>Date</th>
+                <th>ID Card</th>
+                <th>Booking ID</th>
+            </tr>
+
+        </thread>
+        <tbody>
+            @foreach(var booking in Model.bookings)
+            {
+                <tr>
+                    <td>@booking.id</td>
+                    <td>@booking.pcrtestvenueid</td>
+                    <td>@booking.date</td>
+                    <td>@booking.idcard</td>
+                    <td>@booking.pcrbookingid</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/PCR/Edit?id=@booking.id">New Bookings</a>
+                        <a class="btn btn-Danger btn-sm" href="/PCR/Delete?id=@booking.id">New Bookings</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
