@@ -4,6 +4,7 @@
     <br />
     <h2>List of Bookings</h2>
     <a class="btn btn-primary btn-sm" href="/PCR/Create">New Bookings</a>
+    <br />
     <table class="table">
         <thread>
             <tr>
@@ -16,7 +17,7 @@
 
         </thread>
         <tbody>
-            @foreach(var booking in Model.bookings)
+            @foreach (var booking in Model.bookings)
             {
                 <tr>
                     <td>@booking.id</td>
@@ -25,8 +26,8 @@
                     <td>@booking.idcard</td>
                     <td>@booking.pcrbookingid</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="/PCR/Edit?id=@booking.id">New Bookings</a>
-                        <a class="btn btn-Danger btn-sm" href="/PCR/Delete?id=@booking.id">New Bookings</a>
+                        <a class="btn btn-primary btn-sm" href="/PCR/Edit?id=@booking.id">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="/PCR/Delete?id=@booking.id">Delete</a>
                     </td>
                 </tr>
             }

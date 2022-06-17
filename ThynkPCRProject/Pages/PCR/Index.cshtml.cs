@@ -21,7 +21,7 @@ namespace ThynkPCRProject.Pages.PCR
                 using(SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sql = "SELECT * FROM PCRTestBookings";
+                    String sql = "SELECT * FROM PcrTestBookings";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -31,11 +31,11 @@ namespace ThynkPCRProject.Pages.PCR
                                 UserBooking newbooking = new UserBooking();
                                 newbooking.id = ""+reader.GetInt32(0);
                                 newbooking.pcrtestvenueid = "" + reader.GetInt32(1);
-                                newbooking.date = "" + reader.GetInt32(2);
+                                newbooking.date = "" + reader.GetDateTime(2);
                                 newbooking.idcard = reader.GetString(3);
                                 newbooking.pcrbookingid = "" + reader.GetInt32(4);
-                                newbooking.createddate = "" + reader.GetInt32(5);
-                                newbooking.modifieddate = "" + reader.GetInt32(6);
+                                newbooking.createddate = "" + reader.GetDateTime(5);
+                                newbooking.modifieddate = "" + reader.GetDateTime(6);
 
                                 bookings.Add(newbooking);
                             }
