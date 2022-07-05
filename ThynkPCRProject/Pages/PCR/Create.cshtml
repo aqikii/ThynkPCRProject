@@ -1,5 +1,50 @@
 ﻿@page
 @model ThynkPCRProject.Pages.PCR.CreateModel
 @{
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+    <br />
+    <h2>New Booking</h2>
+   
+    <script>
+        function getComboA(selectObject) {
+            var value = selectObject.value;
+            console.log(value);
+        }
+    </script>    
+
+    <form method="POST">
+
+        <select id="comboA" onchange="getComboA(this)">
+            <option value="">Select combo</option>
+            <option value="Value1">Text1</option>
+            <option value="Value2">Text2</option>
+            <option value="Value3">Text3</option>
+        </select>
+
+        <div class="result"></div>
+
+        <div class="result"></div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Date</label>
+            <div>
+                <input type="date" class="form-control" name="name" value="" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">id Number</label>
+            <div>
+                <input type="text" class="form-control" name="name" value="" />
+            </div>
+        </div>
+
+
+
+    </form>
+
+
 
 }
