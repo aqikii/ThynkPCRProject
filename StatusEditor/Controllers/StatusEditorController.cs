@@ -14,10 +14,10 @@ namespace StatusEditor.Controllers
         String connectionString = "Data Source=DESKTOP-M8VG85I;Initial Catalog=ThynkTest_PCR;Integrated Security=True";
         
         [HttpGet("editstatus/{id}/{status}")]
-        public void editstatus(string id, string status)
+        public void editstatus(int id, int status)
         {
-            String _id = id;
-            String _status = status;
+            int _id = id;
+            int _status = status;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -33,10 +33,10 @@ namespace StatusEditor.Controllers
         }
 
         [HttpGet("editoutcome/{id}/{outcome}")]
-        public void editoutcome(string id, string outcome)
+        public void editoutcome(int id, int outcome)
         {
-            String _id = id;
-            String _outcome = outcome;
+            int _id = id;
+            int _outcome = outcome;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
