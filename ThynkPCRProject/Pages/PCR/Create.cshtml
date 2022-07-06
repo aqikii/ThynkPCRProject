@@ -6,33 +6,67 @@
 
     <br />
     <h2>New Booking</h2>
-   
+
     <script>
-        function getComboA(selectObject) {
-            var value = selectObject.value;
+        var previousvalue = 0;
+        
+        function selectvalue(selectcountry) {
+
+
+            var options = ["1", "2", "3", "4", "5"];
+            var value = selectcountry.value;
             console.log(value);
+            var select = document.getElementById("comboB");
+            select.style.display = "inline";
+            document.getElementById("labelcombob").style.display = "inline";
+            for (var i = 0; i < options.length; i++) {
+                var opt = options[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+            }
+
+
         }
-    </script>    
+
+        
+
+
+        function showvalues(value) {
+            
+
+
+            var elems = document.getElementsByClassName(value);
+            console.log(elems);
+            for (var i = 0; i < elems.length; i += 1) {
+                elems[i].style.display = 'table-row';
+            }
+
+            var prevelems = document.getElementsByClassName(previousvalue);
+            for (var i = 0; i < prevelems.length; i += 1) {
+                prevelems[i].style.display = 'none';
+
+            }
+
+            previousvalue = value;
+        }
+
+    </script>
+
+
 
     <form method="POST">
 
-        <select id="comboA" onchange="getComboA(this)">
-            <option value="">Select combo</option>
-            <option value="Value1">Text1</option>
-            <option value="Value2">Text2</option>
-            <option value="Value3">Text3</option>
+        <label for="comboA">Country:</label>
+        <select id="comboA" onchange="showvalues(this.value)">
+            <option value="0">Select Country</option>
+            <option value="1">Malta</option>
+            <option value="2">Italy</option>
+            <option value="3">Singapore</option>
+            <option value="4">Australia</option>
+            <option value="5">United States of America</option>
         </select>
-
-        <div class="result"></div>
-
-        <div class="result"></div>
-
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Date</label>
-            <div>
-                <input type="date" class="form-control" name="name" value="" />
-            </div>
-        </div>
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">id Number</label>
@@ -42,6 +76,31 @@
         </div>
 
 
+
+        <br />
+        <table class="table">
+            <thread>
+                <tr>
+                    <th>Allocation ID</th>
+                    <th>Date</th>
+               
+                </tr>
+
+            </thread>
+            <tbody>
+                @foreach (var availability in Model.availabilitieslist)
+                {
+                <tr class=@availability.venueid style="display:none">
+                    <td>@availability.allocationid</td>
+                    <td>@availability.allocationdate.Remove(availability.allocationdate.Length-12)</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/PCR/Create?id=@availability.allocationid">Book</a>
+                  
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
 
     </form>
 

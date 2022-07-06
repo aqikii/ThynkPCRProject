@@ -63,9 +63,5 @@ namespace ThynkPCRProject.Pages.PCR
 
     }
 
-    public class BookingStatus
-    {
-        char code;
-        String name;
-    }
+    
 }
