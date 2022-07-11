@@ -12,12 +12,15 @@ namespace ThynkPCRProject.Pages.PCR
     {
        
         public List<availability> availabilitieslist = new List<availability>();
-        
+        public UserBooking booking = new UserBooking();
+        String connectionString = "Data Source=DESKTOP-M8VG85I;Initial Catalog=ThynkTest_PCR;Integrated Security=True";
+        public String errorMessage = "";
+        public String successmessage = "";
         public void OnGet()
         {
             try
             {
-                String connectionString = "Data Source=DESKTOP-M8VG85I;Initial Catalog=ThynkTest_PCR;Integrated Security=True";
+                
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -45,7 +48,43 @@ namespace ThynkPCRProject.Pages.PCR
             }
         }
        
+        
 
+        public void OnPost(String date, String allocation)
+        {
+            booking.idcard = Request.Form["idcard"];
+            booking.pcrtestvenueid = Request.Form["comboA"];
+            booking.date = ViewData["Date"].ToString();
+            if(booking.idcard ==null || booking.pcrtestvenueid == null || booking.date == null)
+            {
+                errorMessage = "All Fields are required";
+                return;
+            }
+
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    String sql = "INSERT INTO PcrTestBookings " +
+                        "PcrTestVenueId,BookingDate,IdentityCardNumber,PcrTestBookingStatusId VALUES " +
+                        "@venueid, @date, @idcardnumber, @statusid";
+
+                    using(SqlCommand command = new SqlCommand(sql,connection))
+                    {
+                        command.Parameters.AddWithValue("@venueid", booking.pcrtestvenueid);
+                        command.Parameters.AddWithValue("@date", booking.date);
+                        command.Parameters.AddWithValue("@idcardnumber", booking.idcard);
+                        command.Parameters.AddWithValue("@statusid", 1);
+                    }
+                }
+            }catch(Exception ex)
+            {
+                errorMessage = ex.Message;
+                return; 
+            }
+            Response.Redirect("/PCR/Index");
+        }
 
         
 

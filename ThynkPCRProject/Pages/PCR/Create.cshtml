@@ -9,26 +9,6 @@
 
     <script>
         var previousvalue = 0;
-        
-        function selectvalue(selectcountry) {
-
-
-            var options = ["1", "2", "3", "4", "5"];
-            var value = selectcountry.value;
-            console.log(value);
-            var select = document.getElementById("comboB");
-            select.style.display = "inline";
-            document.getElementById("labelcombob").style.display = "inline";
-            for (var i = 0; i < options.length; i++) {
-                var opt = options[i];
-                var el = document.createElement("option");
-                el.textContent = opt;
-                el.value = opt;
-                select.appendChild(el);
-            }
-
-
-        }
 
         
 
@@ -59,7 +39,7 @@
     <form method="POST">
 
         <label for="comboA">Country:</label>
-        <select id="comboA" onchange="showvalues(this.value)">
+        <select id="comboA" name="comboA" onchange="showvalues(this.value)">
             <option value="0">Select Country</option>
             <option value="1">Malta</option>
             <option value="2">Italy</option>
@@ -68,15 +48,7 @@
             <option value="5">United States of America</option>
         </select>
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">id Number</label>
-            <div>
-                <input type="text" class="form-control" name="name" value="" />
-            </div>
-        </div>
-
-
-
+      
         <br />
         <table class="table">
             <thread>
@@ -93,10 +65,7 @@
                 <tr class=@availability.venueid style="display:none">
                     <td>@availability.allocationid</td>
                     <td>@availability.allocationdate.Remove(availability.allocationdate.Length-12)</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/PCR/Create?id=@availability.allocationid">Book</a>
-                  
-                    </td>
+                    <td><a class="btn btn-primary btn-sm" href="/PCR/Book?allocationid=@availability.allocationid&VenueID=@availability.venueid&date=@availability.allocationdate.Remove(availability.allocationdate.Length-12)">Book</a></td>
                 </tr>
                 }
             </tbody>

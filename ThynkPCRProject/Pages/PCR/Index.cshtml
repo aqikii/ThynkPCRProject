@@ -12,7 +12,7 @@
                 <th>Venue ID</th>
                 <th>Date</th>
                 <th>ID Card</th>
-                <th>Booking ID</th>
+                <th>Status ID</th>
             </tr>
 
         </thread>
@@ -22,13 +22,10 @@
                 <tr>
                     <td>@booking.id</td>
                     <td>@booking.pcrtestvenueid</td>
-                    <td>@booking.date</td>
+                    <td>@booking.date.Remove(booking.date.Length-12)</td>
                     <td>@booking.idcard</td>
                     <td>@booking.pcrbookingid</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/PCR/Edit?id=@booking.id">Edit</a>
-                        <a class="btn btn-danger btn-sm" href="/PCR/Delete?id=@booking.id">Delete</a>
-                    </td>
+                    
                 </tr>
             }
         </tbody>
